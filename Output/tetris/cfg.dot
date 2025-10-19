@@ -1,0 +1,376 @@
+digraph CFG {
+    node [shape=box];
+    B0 [label="B0:
+int gd = DETECT, gm;
+initgraph(&gd, &gm, \"d:\\tc\\bgi\");
+int arr[26][13];
+int i, j, k, score=0, spd=100, x, y, a, p, t_arr[6];
+char play='y', ch;"];
+    B1 [label="B1:
+for(i=0;i<26;i++)"];
+    B2 [label="B2:
+for(j=0;j<13;j++)"];
+    B3 [label="B3:
+arr[i][j] = 0;"];
+    B4 [label="B4:
+for(i=0;i<26;i++) arr[i][0]=1;"];
+    B5 [label="B5:
+for(i=0;i<26;i++) arr[i][12]=1;"];
+    B6 [label="B6:
+for(j=0;j<13;j++) arr[25][j]=1;"];
+    B7 [label="B7:
+while(play=='y') {"];
+    B8 [label="B8:
+cleardevice();
+settextstyle(2,0,6);
+outtextxy(200,100,\"TETRIS GAME\");
+outtextxy(100,200,\"Select Level:\");
+outtextxy(100,250,\"1. Easy\");
+outtextxy(100,300,\"2. Medium\");
+outtextxy(100,350,\"3. Hard\");
+ch = getch();"];
+    B9 [label="B9:
+if(ch=='1') spd=200;"];
+    B10 [label="B10:
+else if(ch=='2') spd=100;"];
+    B11 [label="B11:
+else if(ch=='3') spd=50;"];
+    B12 [label="B12:
+cleardevice();
+int shapeType, rotation, lx[4], ly[4];
+int nextShape, nextRot;
+shapeType = rand()%7;
+rotation = 0;
+nextShape = rand()%7;
+nextRot = 0;"];
+    B13 [label="B13:
+while(1) {"];
+    B14 [label="B14:
+x=5; y=0;
+switch(shapeType) {
+case 0:"];
+    B15 [label="B15:
+if(rotation%2==0){ lx[0]=x; lx[1]=x; lx[2]=x; lx[3]=x; ly[0]=y; ly[1]=y+1; ly[2]=y+2; ly[3]=y+3; }"];
+    B16 [label="B16:
+else { lx[0]=x-1; lx[1]=x; lx[2]=x+1; lx[3]=x+2; ly[0]=y; ly[1]=y; ly[2]=y; ly[3]=y; }"];
+    B17 [label="B17:
+break;"];
+    B18 [label="B18:
+case 1:
+lx[0]=x; lx[1]=x+1; lx[2]=x; lx[3]=x+1;
+ly[0]=y; ly[1]=y; ly[2]=y+1; ly[3]=y+1;
+break;"];
+    B19 [label="B19:
+case 2:"];
+    B20 [label="B20:
+if(rotation%4==0){ lx[0]=x-1; lx[1]=x; lx[2]=x+1; lx[3]=x; ly[0]=y; ly[1]=y; ly[2]=y; ly[3]=y+1; }"];
+    B21 [label="B21:
+else if(rotation%4==1){ lx[0]=x; lx[1]=x; lx[2]=x; lx[3]=x+1; ly[0]=y-1; ly[1]=y; ly[2]=y+1; ly[3]=y; }"];
+    B22 [label="B22:
+else if(rotation%4==2){ lx[0]=x-1; lx[1]=x; lx[2]=x+1; lx[3]=x; ly[0]=y; ly[1]=y; ly[2]=y; ly[3]=y-1; }"];
+    B23 [label="B23:
+else { lx[0]=x; lx[1]=x; lx[2]=x; lx[3]=x-1; ly[0]=y-1; ly[1]=y; ly[2]=y+1; ly[3]=y; }"];
+    B24 [label="B24:
+break;"];
+    B25 [label="B25:
+case 3:"];
+    B26 [label="B26:
+if(rotation%2==0){ lx[0]=x; lx[1]=x+1; lx[2]=x-1; lx[3]=x; ly[0]=y; ly[1]=y; ly[2]=y+1; ly[3]=y+1; }"];
+    B27 [label="B27:
+else { lx[0]=x; lx[1]=x; lx[2]=x+1; lx[3]=x+1; ly[0]=y; ly[1]=y+1; ly[2]=y-1; ly[3]=y; }"];
+    B28 [label="B28:
+break;"];
+    B29 [label="B29:
+case 4:"];
+    B30 [label="B30:
+if(rotation%2==0){ lx[0]=x-1; lx[1]=x; lx[2]=x; lx[3]=x+1; ly[0]=y; ly[1]=y; ly[2]=y+1; ly[3]=y+1; }"];
+    B31 [label="B31:
+else { lx[0]=x+1; lx[1]=x+1; lx[2]=x; lx[3]=x; ly[0]=y; ly[1]=y+1; ly[2]=y-1; ly[3]=y; }"];
+    B32 [label="B32:
+break;"];
+    B33 [label="B33:
+case 5:"];
+    B34 [label="B34:
+if(rotation%4==0){ lx[0]=x-1; lx[1]=x-1; lx[2]=x; lx[3]=x+1; ly[0]=y; ly[1]=y+1; ly[2]=y; ly[3]=y; }"];
+    B35 [label="B35:
+else if(rotation%4==1){ lx[0]=x; lx[1]=x; lx[2]=x; lx[3]=x+1; ly[0]=y-1; ly[1]=y; ly[2]=y+1; ly[3]=y+1; }"];
+    B36 [label="B36:
+else if(rotation%4==2){ lx[0]=x-1; lx[1]=x; lx[2]=x+1; lx[3]=x+1; ly[0]=y; ly[1]=y; ly[2]=y; ly[3]=y-1; }"];
+    B37 [label="B37:
+else { lx[0]=x-1; lx[1]=x; lx[2]=x; lx[3]=x; ly[0]=y-1; ly[1]=y-1; ly[2]=y; ly[3]=y+1; }"];
+    B38 [label="B38:
+break;"];
+    B39 [label="B39:
+case 6:"];
+    B40 [label="B40:
+if(rotation%4==0){ lx[0]=x-1; lx[1]=x; lx[2]=x+1; lx[3]=x+1; ly[0]=y; ly[1]=y; ly[2]=y; ly[3]=y+1; }"];
+    B41 [label="B41:
+else if(rotation%4==1){ lx[0]=x; lx[1]=x; lx[2]=x; lx[3]=x+1; ly[0]=y-1; ly[1]=y; ly[2]=y+1; ly[3]=y-1; }"];
+    B42 [label="B42:
+else if(rotation%4==2){ lx[0]=x-1; lx[1]=x-1; lx[2]=x; lx[3]=x+1; ly[0]=y-1; ly[1]=y; ly[2]=y; ly[3]=y; }"];
+    B43 [label="B43:
+else { lx[0]=x; lx[1]=x; lx[2]=x; lx[3]=x-1; ly[0]=y-1; ly[1]=y; ly[2]=y+1; ly[3]=y+1; }"];
+    B44 [label="B44:
+break;"];
+    B45 [label="B45:
+int landed=0;"];
+    B46 [label="B46:
+while(!landed) {"];
+    B47 [label="B47:
+for(i=0;i<4;i++){"];
+    B48 [label="B48:
+setcolor(WHITE);
+setfillstyle(SOLID_FILL,6);
+rectangle(180+lx[i]*15,90+ly[i]*15,180+lx[i]*15+14,90+ly[i]*15+14);
+floodfill(181+lx[i]*15,91+ly[i]*15,WHITE);
+delay(spd);"];
+    B49 [label="B49:
+for(i=0;i<4;i++){"];
+    B50 [label="B50:
+setcolor(BLACK);
+setfillstyle(SOLID_FILL,BLACK);
+rectangle(180+lx[i]*15,90+ly[i]*15,180+lx[i]*15+14,90+ly[i]*15+14);
+floodfill(181+lx[i]*15,91+ly[i]*15,BLACK);"];
+    B51 [label="B51:
+for(i=0;i<4;i++){"];
+    B52 [label="B52:
+if(arr[ly[i]+1][lx[i]]==1) { landed=1; break; }"];
+    B53 [label="B53:
+if(!landed) for(i=0;i<4;i++) ly[i]++;"];
+    B54 [label="B54:
+if(kbhit()){"];
+    B55 [label="B55:
+char c = getch();"];
+    B56 [label="B56:
+if(c==0) c=getch();"];
+    B57 [label="B57:
+if(c==75){"];
+    B58 [label="B58:
+int canMove=1;"];
+    B59 [label="B59:
+for(i=0;i<4;i++) if(arr[ly[i]][lx[i]-1]==1) canMove=0;"];
+    B60 [label="B60:
+if(canMove) for(i=0;i<4;i--) lx[i]--;"];
+    B61 [label="B61:
+if(c==77){"];
+    B62 [label="B62:
+int canMove=1;"];
+    B63 [label="B63:
+for(i=0;i<4;i++) if(arr[ly[i]][lx[i]+1]==1) canMove=0;"];
+    B64 [label="B64:
+if(canMove) for(i=0;i<4;i++) lx[i]++;"];
+    B65 [label="B65:
+if(c==32){"];
+    B66 [label="B66:
+rotation = (rotation+1)%4;
+break;"];
+    B67 [label="B67:
+if(c==27) exit(0);"];
+    B68 [label="B68:
+for(i=0;i<4;i++) arr[ly[i]][lx[i]]=1;"];
+    B69 [label="B69:
+for(i=24;i>=0;i--){"];
+    B70 [label="B70:
+int full=1;"];
+    B71 [label="B71:
+for(j=1;j<12;j++){"];
+    B72 [label="B72:
+if(arr[i][j]==0){ full=0; break; }"];
+    B73 [label="B73:
+if(full){"];
+    B74 [label="B74:
+score+=100;"];
+    B75 [label="B75:
+for(k=i;k>0;k--) for(j=1;j<12;j++) arr[k][j]=arr[k-1][j];"];
+    B76 [label="B76:
+for(j=1;j<12;j++) arr[0][j]=0;"];
+    B77 [label="B77:
+i++;"];
+    B78 [label="B78:
+for(i=1;i<12;i++){"];
+    B79 [label="B79:
+if(arr[0][i]==1){"];
+    B80 [label="B80:
+settextstyle(3,0,4);
+outtextxy(200,200,\"GAME OVER\");
+outtextxy(200,250,\"Press Y to play again\");
+char tmp=getch();"];
+    B81 [label="B81:
+if(tmp!='y') exit(0);"];
+    B82 [label="B82:
+for(i=0;i<26;i++) for(j=0;j<13;j++) arr[i][j]=0;"];
+    B83 [label="B83:
+for(i=0;i<26;i++) arr[i][0]=1;"];
+    B84 [label="B84:
+for(i=0;i<26;i++) arr[i][12]=1;"];
+    B85 [label="B85:
+for(j=0;j<13;j++) arr[25][j]=1;"];
+    B86 [label="B86:
+score=0;
+break;"];
+    B87 [label="B87:
+shapeType = nextShape;
+rotation = nextRot;
+nextShape = rand()%7;
+nextRot = 0;
+closegraph();"];
+    B0 -> B1;
+    B1 -> B2 [label="true"];
+    B1 -> B3 [label="false"];
+    B2 -> B1 [label="back"];
+    B2 -> B3 [label="true"];
+    B2 -> B4 [label="false"];
+    B3 -> B2 [label="back"];
+    B3 -> B4;
+    B4 -> B5 [label="true"];
+    B4 -> B6 [label="false"];
+    B5 -> B4 [label="back"];
+    B5 -> B6 [label="true"];
+    B5 -> B7 [label="false"];
+    B6 -> B5 [label="back"];
+    B6 -> B7 [label="true"];
+    B6 -> B8 [label="false"];
+    B7 -> B6 [label="back"];
+    B7 -> B8 [label="true"];
+    B7 -> B9 [label="false"];
+    B8 -> B7 [label="back"];
+    B8 -> B9;
+    B9 -> B10 [label="true"];
+    B9 -> B11 [label="false"];
+    B10 -> B11 [label="true"];
+    B10 -> B12 [label="false"];
+    B11 -> B12 [label="true"];
+    B11 -> B13 [label="false"];
+    B12 -> B13;
+    B13 -> B14 [label="true"];
+    B13 -> B15 [label="false"];
+    B14 -> B13 [label="back"];
+    B14 -> B15;
+    B15 -> B16 [label="true"];
+    B15 -> B17 [label="false"];
+    B16 -> B17 [label="true"];
+    B16 -> B18 [label="false"];
+    B19 -> B20;
+    B20 -> B21 [label="true"];
+    B20 -> B22 [label="false"];
+    B21 -> B22 [label="true"];
+    B21 -> B23 [label="false"];
+    B22 -> B23 [label="true"];
+    B22 -> B24 [label="false"];
+    B23 -> B24 [label="true"];
+    B23 -> B25 [label="false"];
+    B25 -> B26;
+    B26 -> B27 [label="true"];
+    B26 -> B28 [label="false"];
+    B27 -> B28 [label="true"];
+    B27 -> B29 [label="false"];
+    B29 -> B30;
+    B30 -> B31 [label="true"];
+    B30 -> B32 [label="false"];
+    B31 -> B32 [label="true"];
+    B31 -> B33 [label="false"];
+    B33 -> B34;
+    B34 -> B35 [label="true"];
+    B34 -> B36 [label="false"];
+    B35 -> B36 [label="true"];
+    B35 -> B37 [label="false"];
+    B36 -> B37 [label="true"];
+    B36 -> B38 [label="false"];
+    B37 -> B38 [label="true"];
+    B37 -> B39 [label="false"];
+    B39 -> B40;
+    B40 -> B41 [label="true"];
+    B40 -> B42 [label="false"];
+    B41 -> B42 [label="true"];
+    B41 -> B43 [label="false"];
+    B42 -> B43 [label="true"];
+    B42 -> B44 [label="false"];
+    B43 -> B44 [label="true"];
+    B43 -> B45 [label="false"];
+    B45 -> B46;
+    B46 -> B47 [label="true"];
+    B46 -> B48 [label="false"];
+    B47 -> B46 [label="back"];
+    B47 -> B48 [label="true"];
+    B47 -> B49 [label="false"];
+    B48 -> B47 [label="back"];
+    B48 -> B49;
+    B49 -> B50 [label="true"];
+    B49 -> B51 [label="false"];
+    B50 -> B49 [label="back"];
+    B50 -> B51;
+    B51 -> B52 [label="true"];
+    B51 -> B53 [label="false"];
+    B52 -> B51 [label="back"];
+    B52 -> B53 [label="true"];
+    B52 -> B54 [label="false"];
+    B53 -> B54 [label="true"];
+    B53 -> B55 [label="false"];
+    B54 -> B55 [label="true"];
+    B54 -> B56 [label="false"];
+    B55 -> B56;
+    B56 -> B57 [label="true"];
+    B56 -> B58 [label="false"];
+    B57 -> B58 [label="true"];
+    B57 -> B59 [label="false"];
+    B58 -> B59;
+    B59 -> B60 [label="true"];
+    B59 -> B61 [label="false"];
+    B60 -> B59 [label="back"];
+    B60 -> B61 [label="true"];
+    B60 -> B62 [label="false"];
+    B61 -> B62 [label="true"];
+    B61 -> B63 [label="false"];
+    B62 -> B63;
+    B63 -> B64 [label="true"];
+    B63 -> B65 [label="false"];
+    B64 -> B63 [label="back"];
+    B64 -> B65 [label="true"];
+    B64 -> B66 [label="false"];
+    B65 -> B66 [label="true"];
+    B65 -> B67 [label="false"];
+    B67 -> B68 [label="true"];
+    B67 -> B69 [label="false"];
+    B68 -> B69 [label="true"];
+    B68 -> B70 [label="false"];
+    B69 -> B68 [label="back"];
+    B69 -> B70 [label="true"];
+    B69 -> B71 [label="false"];
+    B70 -> B69 [label="back"];
+    B70 -> B71;
+    B71 -> B72 [label="true"];
+    B71 -> B73 [label="false"];
+    B72 -> B71 [label="back"];
+    B72 -> B73 [label="true"];
+    B72 -> B74 [label="false"];
+    B73 -> B74 [label="true"];
+    B73 -> B75 [label="false"];
+    B74 -> B75;
+    B75 -> B76 [label="true"];
+    B75 -> B77 [label="false"];
+    B76 -> B75 [label="back"];
+    B76 -> B77 [label="true"];
+    B76 -> B78 [label="false"];
+    B77 -> B76 [label="back"];
+    B77 -> B78;
+    B78 -> B79 [label="true"];
+    B78 -> B80 [label="false"];
+    B79 -> B78 [label="back"];
+    B79 -> B80 [label="true"];
+    B79 -> B81 [label="false"];
+    B80 -> B81;
+    B81 -> B82 [label="true"];
+    B81 -> B83 [label="false"];
+    B82 -> B83 [label="true"];
+    B82 -> B84 [label="false"];
+    B83 -> B82 [label="back"];
+    B83 -> B84 [label="true"];
+    B83 -> B85 [label="false"];
+    B84 -> B83 [label="back"];
+    B84 -> B85 [label="true"];
+    B84 -> B86 [label="false"];
+    B85 -> B84 [label="back"];
+    B85 -> B86 [label="true"];
+    B85 -> B87 [label="false"];
+    B86 -> B85 [label="back"];
+}

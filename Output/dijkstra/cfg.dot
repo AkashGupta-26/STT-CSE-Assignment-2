@@ -1,0 +1,100 @@
+digraph CFG {
+    node [shape=box];
+    B0 [label="B0:
+Graph g;
+int n;
+printf(\"Enter number of vertices: \");
+scanf(\"%d\", &n);
+initGraph(&g, n);
+printf(\"Enter adjacency matrix (0 for no edge):\n\");"];
+    B1 [label="B1:
+for (int i = 0; i < n; i++)"];
+    B2 [label="B2:
+for (int j = 0; j < n; j++)"];
+    B3 [label="B3:
+scanf(\"%d\", &g.adjMatrix[i][j]);
+int startVertex;
+printf(\"Enter start vertex: \");
+scanf(\"%d\", &startVertex);
+int n = g.numVertices;
+int dist[MAX_SIZE];
+int visited[MAX_SIZE] = {0};"];
+    B4 [label="B4:
+for (int i = 0; i < n; i++)"];
+    B5 [label="B5:
+dist[i] = INT_MAX;
+dist[startVertex] = 0;
+PriorityQueue pq;
+initQueue(&pq);
+insert(&pq, startVertex, 0);"];
+    B6 [label="B6:
+while (!isEmpty(&pq)) {"];
+    B7 [label="B7:
+Node node = extractMin(&pq);
+int u = node.vertex;"];
+    B8 [label="B8:
+if (visited[u]) continue;"];
+    B9 [label="B9:
+visited[u] = 1;"];
+    B10 [label="B10:
+for (int v = 0; v < n; v++) {"];
+    B11 [label="B11:
+int weight = g.adjMatrix[u][v];"];
+    B12 [label="B12:
+if (weight && !visited[v]) {"];
+    B13 [label="B13:
+int alt = dist[u] + weight;"];
+    B14 [label="B14:
+if (alt < dist[v]) {"];
+    B15 [label="B15:
+dist[v] = alt;
+insert(&pq, v, alt);
+printf(\"\nShortest distances from vertex %d:\n\", startVertex);"];
+    B16 [label="B16:
+for (int i = 0; i < n; i++) {"];
+    B17 [label="B17:
+if (dist[i] == INT_MAX)"];
+    B18 [label="B18:
+printf(\"%d -> INF\n\", i);"];
+    B19 [label="B19:
+else"];
+    B20 [label="B20:
+printf(\"%d -> %d\n\", i, dist[i]);
+return 0;"];
+    B0 -> B1;
+    B1 -> B2 [label="true"];
+    B1 -> B3 [label="false"];
+    B2 -> B1 [label="back"];
+    B2 -> B3 [label="true"];
+    B2 -> B4 [label="false"];
+    B3 -> B2 [label="back"];
+    B3 -> B4;
+    B4 -> B5 [label="true"];
+    B4 -> B6 [label="false"];
+    B5 -> B4 [label="back"];
+    B5 -> B6;
+    B6 -> B7 [label="true"];
+    B6 -> B8 [label="false"];
+    B7 -> B6 [label="back"];
+    B7 -> B8;
+    B8 -> B9 [label="true"];
+    B8 -> B10 [label="false"];
+    B9 -> B10;
+    B10 -> B11 [label="true"];
+    B10 -> B12 [label="false"];
+    B11 -> B10 [label="back"];
+    B11 -> B12;
+    B12 -> B13 [label="true"];
+    B12 -> B14 [label="false"];
+    B13 -> B14;
+    B14 -> B15 [label="true"];
+    B14 -> B16 [label="false"];
+    B15 -> B16;
+    B16 -> B17 [label="true"];
+    B16 -> B18 [label="false"];
+    B17 -> B16 [label="back"];
+    B17 -> B18 [label="true"];
+    B17 -> B19 [label="false"];
+    B18 -> B19;
+    B19 -> B20 [label="true"];
+}

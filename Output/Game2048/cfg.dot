@@ -1,0 +1,510 @@
+digraph CFG {
+    node [shape=box];
+    B0 [label="B0:
+int arr[4][4] = {0}, c[4], temp = 0, len = 0, score = 0,
+highscore = 0, count = 0, ch = 0;
+int i, j, k, m, n, same = 0;
+char choise, s = -33, reschk;
+printf(\"===============2048==============\n\");
+printf(\"WELCOME TO PUZZLE 2048\n\");
+printf(\"> CONTROLS\n\");
+printf(\"  FOR MOVES:- 'W','S','A','D'\n\");
+printf(\"  GO BACKWARD:- 'P'\n\");
+printf(\"  RESTART THE GAME:- 'R'\n\");
+printf(\"  EXIT:-'U'\n\");
+printf(\"\nPRESS ANY KEY TO START THE GAME....\");
+getchar();
+system(\"clear || cls\");
+printf(\"\n===============2048==============\n\");
+printf(\"\nLOADING...\n\");"];
+    B1 [label="B1:
+for (int i = 0, j; i < 35; i++) {"];
+    B2 [label="B2:
+printf(\"%c\", s);
+j = i;"];
+    B3 [label="B3:
+if (i % 2 != 0 && i < 20) {"];
+    B4 [label="B4:
+Sleep(1);
+Sleep(1);
+system(\"clear || cls\");
+int*** p;
+p = (int***)malloc(sizeof(int**) * (MAXPREV + 1));"];
+    B5 [label="B5:
+for (i = 0; i < MAXPREV + 1; i++) {"];
+    B6 [label="B6:
+p[i] = (int**)malloc(sizeof(int*) * 4);"];
+    B7 [label="B7:
+for (j = 0; j < 4; j++) {"];
+    B8 [label="B8:
+p[i][j] = (int*)malloc(sizeof(int) * 4);
+FILE* ptr = fopen(\"highscore.txt\", \"r\");"];
+    B9 [label="B9:
+if(ptr) { fscanf(ptr, \"%d\", &highscore); fclose(ptr); }"];
+    B10 [label="B10:
+ptr = fopen(\"hstr.txt\", \"w\");
+fclose(ptr);
+srand(time(NULL));
+int ri, rj, no;
+do {
+ri = rand() % (MAXRANDOMVALUE + 1);
+rj = rand() % (MAXRANDOMVALUE + 1);
+} while (arr[ri][rj] != 0);
+no = 2 * ((rand() % 10) + 1);
+arr[ri][rj] = (no == 2 || no == 3) ? 4 : 2;"];
+    B11 [label="B11:
+while(1) {"];
+    B12 [label="B12:
+system(\"clear || cls\");
+printf(\"\n\t\t\t\t\t===============2048==============\n\");
+printf(\"\t\t\t\t\tYOUR SCORE=%d\n\t\t\t\t\t\", score);"];
+    B13 [label="B13:
+if (score < highscore) {"];
+    B14 [label="B14:
+printf(\"HIGH SCORE=%d\t\t\t\t\t\n\", highscore);
+} else {
+highscore = score;
+printf(\"HIGH SCORE=%d\t\t\t\t\t\n\", highscore);
+printf(\"\t\t\t\t\t---------------------------------\n\");"];
+    B15 [label="B15:
+for(i=0;i<4;i++){"];
+    B16 [label="B16:
+for(j=0;j<4;j++){"];
+    B17 [label="B17:
+if(j==0) printf(\"\t\t\t\t\t|\");"];
+    B18 [label="B18:
+len=0;
+int tmp=arr[i][j];"];
+    B19 [label="B19:
+if(tmp==0) len=0;"];
+    B20 [label="B20:
+else { while(tmp>0){ tmp/=10; len++; } }"];
+    B21 [label="B21:
+if(arr[i][j]!=0){"];
+    B22 [label="B22:
+for(k=0;k<4-len;k++) printf(\" \");"];
+    B23 [label="B23:
+printf(\"%d\", arr[i][j]);"];
+    B24 [label="B24:
+for(k=0;k<4-len;k++) printf(\" \");"];
+    B25 [label="B25:
+for(k=0;k<len-1;k++) printf(\" \");"];
+    B26 [label="B26:
+printf(\"|\");
+} else {"];
+    B27 [label="B27:
+for(k=0;k<8-2*len-1;k++) printf(\" \");"];
+    B28 [label="B28:
+printf(\"|\");"];
+    B29 [label="B29:
+if(i!=3) printf(\"\n\t\t\t\t\t-----------------------------\""];
+    B30 [label="B30:
+\"----\n\");
+printf(\"\n\t\t\t\t\t---------------------------------\n\");
+printf(\"\t\t\t\t\tPREV-> P\t\t\t\t\t\n\");
+printf(\"\t\t\t\t\tRESTART-> R\t\t\t\t\t\n\");
+printf(\"\t\t\t\t\tEXIT-> U\t\t\t\t\t\n\");
+printf(\"\t\t\t\t\tENTER YOUR CHOICE -> W,S,A,D\n\t\t\t\t\t\");
+choise = getchar();"];
+    B31 [label="B31:
+while(getchar()!='\n');"];
+    B32 [label="B32:
+if (choise=='D'||choise=='d'||choise=='A'||choise=='a'||choise=='S'||choise=='s'||choise=='W'||choise=='w') {"];
+    B33 [label="B33:
+count++;
+ch++;"];
+    B34 [label="B34:
+if(count==MAXPREV+1){"];
+    B35 [label="B35:
+for(i=MAXPREV;i>0;i--)"];
+    B36 [label="B36:
+for(j=0;j<4;j++)"];
+    B37 [label="B37:
+for(k=0;k<4;k++)"];
+    B38 [label="B38:
+p[i][j][k]=p[i-1][j][k];
+count=MAXPREV;"];
+    B39 [label="B39:
+for(i=0;i<4;i++)"];
+    B40 [label="B40:
+for(j=0;j<4;j++)"];
+    B41 [label="B41:
+p[MAXPREV-count][i][j]=arr[i][j];
+temp=0;"];
+    B42 [label="B42:
+if(choise=='D'||choise=='d'){"];
+    B43 [label="B43:
+for(i=0;i<4;i++){"];
+    B44 [label="B44:
+for(j=0;j<4;j++) c[j]=arr[i][j];"];
+    B45 [label="B45:
+for(j=3;j>0;j--){"];
+    B46 [label="B46:
+if(c[j]==c[j-1]){ c[j]+=c[j-1]; score+=c[j]; c[j-1]=0; temp=1; }"];
+    B47 [label="B47:
+else if(c[j-1]==0 && c[j]!=0){ c[j-1]=c[j]; c[j]=0; temp=1; }"];
+    B48 [label="B48:
+else if(c[j]==0) temp=1;"];
+    B49 [label="B49:
+for(j=0;j<3;j++)"];
+    B50 [label="B50:
+if(c[j]==0){ c[j]=c[j+1]; c[j+1]=0; }"];
+    B51 [label="B51:
+for(k=0;k<4;k++) arr[i][k]=c[k];"];
+    B52 [label="B52:
+} else if(choise=='A'||choise=='a'){"];
+    B53 [label="B53:
+for(i=0;i<4;i++){"];
+    B54 [label="B54:
+for(j=0;j<4;j++) c[j]=arr[i][3-j];"];
+    B55 [label="B55:
+for(j=3;j>0;j--){"];
+    B56 [label="B56:
+if(c[j]==c[j-1]){ c[j]+=c[j-1]; score+=c[j]; c[j-1]=0; temp=1; }"];
+    B57 [label="B57:
+else if(c[j-1]==0 && c[j]!=0){ c[j-1]=c[j]; c[j]=0; temp=1; }"];
+    B58 [label="B58:
+else if(c[j]==0) temp=1;"];
+    B59 [label="B59:
+for(j=0;j<3;j++)"];
+    B60 [label="B60:
+if(c[j]==0){ c[j]=c[j+1]; c[j+1]=0; }"];
+    B61 [label="B61:
+for(k=0;k<4;k++) arr[i][3-k]=c[k];"];
+    B62 [label="B62:
+} else if(choise=='S'||choise=='s'){"];
+    B63 [label="B63:
+for(i=0;i<4;i++){"];
+    B64 [label="B64:
+for(j=0;j<4;j++) c[j]=arr[j][i];"];
+    B65 [label="B65:
+for(j=3;j>0;j--){"];
+    B66 [label="B66:
+if(c[j]==c[j-1]){ c[j]+=c[j-1]; score+=c[j]; c[j-1]=0; temp=1; }"];
+    B67 [label="B67:
+else if(c[j-1]==0 && c[j]!=0){ c[j-1]=c[j]; c[j]=0; temp=1; }"];
+    B68 [label="B68:
+else if(c[j]==0) temp=1;"];
+    B69 [label="B69:
+for(j=0;j<3;j++)"];
+    B70 [label="B70:
+if(c[j]==0){ c[j]=c[j+1]; c[j+1]=0; }"];
+    B71 [label="B71:
+for(k=0;k<4;k++) arr[k][i]=c[k];"];
+    B72 [label="B72:
+} else if(choise=='W'||choise=='w'){"];
+    B73 [label="B73:
+for(i=0;i<4;i++){"];
+    B74 [label="B74:
+for(j=0;j<4;j++) c[j]=arr[3-j][i];"];
+    B75 [label="B75:
+for(j=3;j>0;j--){"];
+    B76 [label="B76:
+if(c[j]==c[j-1]){ c[j]+=c[j-1]; score+=c[j]; c[j-1]=0; temp=1; }"];
+    B77 [label="B77:
+else if(c[j-1]==0 && c[j]!=0){ c[j-1]=c[j]; c[j]=0; temp=1; }"];
+    B78 [label="B78:
+else if(c[j]==0) temp=1;"];
+    B79 [label="B79:
+for(j=0;j<3;j++)"];
+    B80 [label="B80:
+if(c[j]==0){ c[j]=c[j+1]; c[j+1]=0; }"];
+    B81 [label="B81:
+for(k=0;k<4;k++) arr[3-k][i]=c[k];"];
+    B82 [label="B82:
+} else if(choise=='P'||choise=='p'){"];
+    B83 [label="B83:
+if(count==0) { printf(\"\n******FURTHER MORE PREV NOT POSSIBLE********\"); }"];
+    B84 [label="B84:
+else{"];
+    B85 [label="B85:
+ptr=fopen(\"hstr.txt\",\"r+\");
+int data;"];
+    B86 [label="B86:
+for(i=0;i<count;i++) fscanf(ptr,\"%d\",&data);"];
+    B87 [label="B87:
+fclose(ptr);
+score=data;"];
+    B88 [label="B88:
+for(i=0;i<4;i++)"];
+    B89 [label="B89:
+for(j=0;j<4;j++)"];
+    B90 [label="B90:
+arr[i][j]=p[MAXPREV-count][i][j];
+count--;
+} else if(choise=='R'||choise=='r'){
+score=0; count=0;"];
+    B91 [label="B91:
+for(i=0;i<4;i++)"];
+    B92 [label="B92:
+for(j=0;j<4;j++) arr[i][j]=0;"];
+    B93 [label="B93:
+do { ri=rand()%(MAXRANDOMVALUE+1); rj=rand()%(MAXRANDOMVALUE+1); } while(arr[ri][rj]!=0);
+no = 2*((rand()%10)+1); arr[ri][rj]=(no==2||no==3)?4:2;
+continue;"];
+    B94 [label="B94:
+} else if(choise=='U'||choise=='u'){ exit(0); }"];
+    B95 [label="B95:
+if(temp==1){"];
+    B96 [label="B96:
+do { ri=rand()%(MAXRANDOMVALUE+1); rj=rand()%(MAXRANDOMVALUE+1); } while(arr[ri][rj]!=0);
+no = 2*((rand()%10)+1); arr[ri][rj]=(no==2||no==3)?4:2;
+same=0;"];
+    B97 [label="B97:
+for(m=0;m<4;m++){"];
+    B98 [label="B98:
+for(n=3;n>0;n--){"];
+    B99 [label="B99:
+if(arr[m][n]==arr[m][n-1] || arr[m][n]==0 || arr[m][n-1]==0) { same=1; break; }"];
+    B100 [label="B100:
+if(arr[n][m]==arr[n-1][m] || arr[m][n]==0 || arr[m][n-1]==0) { same=1; break; }"];
+    B101 [label="B101:
+if(same==1) break;"];
+    B102 [label="B102:
+if(same==1) { printf(\"\n============INVALID KEY==========\n\"); continue; }"];
+    B103 [label="B103:
+else{"];
+    B104 [label="B104:
+printf(\"\n=============GAME OVER============\");
+printf(\"\nWANT TO PLAY MORE?? Y/N??\n\");
+reschk=getchar(); while(getchar()!='\n');"];
+    B105 [label="B105:
+if(reschk=='Y'||reschk=='y'){ score=0; count=0; for(i=0;i<4;i++) for(j=0;j<4;j++) arr[i][j]=0; continue; }"];
+    B106 [label="B106:
+else exit(0);"];
+    B107 [label="B107:
+if(score>highscore){"];
+    B108 [label="B108:
+ptr=fopen(\"highscore.txt\",\"w\"); fprintf(ptr,\"%d\",score); fclose(ptr);
+return 0;"];
+    B0 -> B1;
+    B1 -> B2 [label="true"];
+    B1 -> B3 [label="false"];
+    B2 -> B1 [label="back"];
+    B2 -> B3;
+    B3 -> B4 [label="true"];
+    B3 -> B5 [label="false"];
+    B4 -> B5;
+    B5 -> B6 [label="true"];
+    B5 -> B7 [label="false"];
+    B6 -> B5 [label="back"];
+    B6 -> B7;
+    B7 -> B8 [label="true"];
+    B7 -> B9 [label="false"];
+    B8 -> B7 [label="back"];
+    B8 -> B9;
+    B9 -> B10 [label="true"];
+    B9 -> B11 [label="false"];
+    B10 -> B11;
+    B11 -> B12 [label="true"];
+    B11 -> B13 [label="false"];
+    B12 -> B11 [label="back"];
+    B12 -> B13;
+    B13 -> B14 [label="true"];
+    B13 -> B15 [label="false"];
+    B14 -> B15;
+    B15 -> B16 [label="true"];
+    B15 -> B17 [label="false"];
+    B16 -> B15 [label="back"];
+    B16 -> B17 [label="true"];
+    B16 -> B18 [label="false"];
+    B17 -> B16 [label="back"];
+    B17 -> B18 [label="true"];
+    B17 -> B19 [label="false"];
+    B18 -> B19;
+    B19 -> B20 [label="true"];
+    B19 -> B21 [label="false"];
+    B20 -> B21 [label="true"];
+    B20 -> B22 [label="false"];
+    B21 -> B22 [label="true"];
+    B21 -> B23 [label="false"];
+    B22 -> B23 [label="true"];
+    B22 -> B24 [label="false"];
+    B23 -> B22 [label="back"];
+    B23 -> B24;
+    B24 -> B25 [label="true"];
+    B24 -> B26 [label="false"];
+    B25 -> B24 [label="back"];
+    B25 -> B26 [label="true"];
+    B25 -> B27 [label="false"];
+    B26 -> B25 [label="back"];
+    B26 -> B27;
+    B27 -> B28 [label="true"];
+    B27 -> B29 [label="false"];
+    B28 -> B27 [label="back"];
+    B28 -> B29;
+    B29 -> B30 [label="true"];
+    B29 -> B31 [label="false"];
+    B30 -> B31;
+    B31 -> B32 [label="true"];
+    B31 -> B33 [label="false"];
+    B32 -> B31 [label="back"];
+    B32 -> B33 [label="true"];
+    B32 -> B34 [label="false"];
+    B33 -> B34;
+    B34 -> B35 [label="true"];
+    B34 -> B36 [label="false"];
+    B35 -> B36 [label="true"];
+    B35 -> B37 [label="false"];
+    B36 -> B35 [label="back"];
+    B36 -> B37 [label="true"];
+    B36 -> B38 [label="false"];
+    B37 -> B36 [label="back"];
+    B37 -> B38 [label="true"];
+    B37 -> B39 [label="false"];
+    B38 -> B37 [label="back"];
+    B38 -> B39;
+    B39 -> B40 [label="true"];
+    B39 -> B41 [label="false"];
+    B40 -> B39 [label="back"];
+    B40 -> B41 [label="true"];
+    B40 -> B42 [label="false"];
+    B41 -> B40 [label="back"];
+    B41 -> B42;
+    B42 -> B43 [label="true"];
+    B42 -> B44 [label="false"];
+    B43 -> B44 [label="true"];
+    B43 -> B45 [label="false"];
+    B44 -> B43 [label="back"];
+    B44 -> B45 [label="true"];
+    B44 -> B46 [label="false"];
+    B45 -> B44 [label="back"];
+    B45 -> B46 [label="true"];
+    B45 -> B47 [label="false"];
+    B46 -> B45 [label="back"];
+    B46 -> B47 [label="true"];
+    B46 -> B48 [label="false"];
+    B47 -> B48 [label="true"];
+    B47 -> B49 [label="false"];
+    B48 -> B49 [label="true"];
+    B48 -> B50 [label="false"];
+    B49 -> B50 [label="true"];
+    B49 -> B51 [label="false"];
+    B50 -> B49 [label="back"];
+    B50 -> B51 [label="true"];
+    B50 -> B52 [label="false"];
+    B51 -> B52 [label="true"];
+    B51 -> B53 [label="false"];
+    B52 -> B51 [label="back"];
+    B52 -> B53;
+    B53 -> B54 [label="true"];
+    B53 -> B55 [label="false"];
+    B54 -> B53 [label="back"];
+    B54 -> B55 [label="true"];
+    B54 -> B56 [label="false"];
+    B55 -> B54 [label="back"];
+    B55 -> B56 [label="true"];
+    B55 -> B57 [label="false"];
+    B56 -> B55 [label="back"];
+    B56 -> B57 [label="true"];
+    B56 -> B58 [label="false"];
+    B57 -> B58 [label="true"];
+    B57 -> B59 [label="false"];
+    B58 -> B59 [label="true"];
+    B58 -> B60 [label="false"];
+    B59 -> B60 [label="true"];
+    B59 -> B61 [label="false"];
+    B60 -> B59 [label="back"];
+    B60 -> B61 [label="true"];
+    B60 -> B62 [label="false"];
+    B61 -> B62 [label="true"];
+    B61 -> B63 [label="false"];
+    B62 -> B61 [label="back"];
+    B62 -> B63;
+    B63 -> B64 [label="true"];
+    B63 -> B65 [label="false"];
+    B64 -> B63 [label="back"];
+    B64 -> B65 [label="true"];
+    B64 -> B66 [label="false"];
+    B65 -> B64 [label="back"];
+    B65 -> B66 [label="true"];
+    B65 -> B67 [label="false"];
+    B66 -> B65 [label="back"];
+    B66 -> B67 [label="true"];
+    B66 -> B68 [label="false"];
+    B67 -> B68 [label="true"];
+    B67 -> B69 [label="false"];
+    B68 -> B69 [label="true"];
+    B68 -> B70 [label="false"];
+    B69 -> B70 [label="true"];
+    B69 -> B71 [label="false"];
+    B70 -> B69 [label="back"];
+    B70 -> B71 [label="true"];
+    B70 -> B72 [label="false"];
+    B71 -> B72 [label="true"];
+    B71 -> B73 [label="false"];
+    B72 -> B71 [label="back"];
+    B72 -> B73;
+    B73 -> B74 [label="true"];
+    B73 -> B75 [label="false"];
+    B74 -> B73 [label="back"];
+    B74 -> B75 [label="true"];
+    B74 -> B76 [label="false"];
+    B75 -> B74 [label="back"];
+    B75 -> B76 [label="true"];
+    B75 -> B77 [label="false"];
+    B76 -> B75 [label="back"];
+    B76 -> B77 [label="true"];
+    B76 -> B78 [label="false"];
+    B77 -> B78 [label="true"];
+    B77 -> B79 [label="false"];
+    B78 -> B79 [label="true"];
+    B78 -> B80 [label="false"];
+    B79 -> B80 [label="true"];
+    B79 -> B81 [label="false"];
+    B80 -> B79 [label="back"];
+    B80 -> B81 [label="true"];
+    B80 -> B82 [label="false"];
+    B81 -> B82 [label="true"];
+    B81 -> B83 [label="false"];
+    B82 -> B81 [label="back"];
+    B82 -> B83;
+    B83 -> B84 [label="true"];
+    B83 -> B85 [label="false"];
+    B84 -> B85 [label="true"];
+    B84 -> B86 [label="false"];
+    B85 -> B86;
+    B86 -> B87 [label="true"];
+    B86 -> B88 [label="false"];
+    B87 -> B86 [label="back"];
+    B87 -> B88;
+    B88 -> B89 [label="true"];
+    B88 -> B90 [label="false"];
+    B89 -> B88 [label="back"];
+    B89 -> B90 [label="true"];
+    B89 -> B91 [label="false"];
+    B90 -> B89 [label="back"];
+    B90 -> B91;
+    B91 -> B92 [label="true"];
+    B91 -> B93 [label="false"];
+    B92 -> B91 [label="back"];
+    B92 -> B93 [label="true"];
+    B92 -> B94 [label="false"];
+    B93 -> B92 [label="back"];
+    B94 -> B95;
+    B95 -> B96 [label="true"];
+    B95 -> B97 [label="false"];
+    B96 -> B97;
+    B97 -> B98 [label="true"];
+    B97 -> B99 [label="false"];
+    B98 -> B97 [label="back"];
+    B98 -> B99 [label="true"];
+    B98 -> B100 [label="false"];
+    B99 -> B98 [label="back"];
+    B99 -> B100 [label="true"];
+    B99 -> B101 [label="false"];
+    B100 -> B101 [label="true"];
+    B100 -> B102 [label="false"];
+    B101 -> B102 [label="true"];
+    B101 -> B103 [label="false"];
+    B102 -> B103 [label="true"];
+    B102 -> B104 [label="false"];
+    B103 -> B104 [label="true"];
+    B103 -> B105 [label="false"];
+    B104 -> B105;
+    B105 -> B106 [label="true"];
+    B105 -> B107 [label="false"];
+    B106 -> B107 [label="true"];
+    B106 -> B108 [label="false"];
+    B107 -> B108 [label="true"];
+}
